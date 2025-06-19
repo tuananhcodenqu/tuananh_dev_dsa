@@ -1,0 +1,82 @@
+    #include <bits/stdc++.h>
+    using namespace std;
+
+    // HEAP SORT
+    //void heapify(int arr[], int n, int i){
+    //    int largest = i;
+    //    int left = 2*i+1;
+    //    int right = 2*i+2;
+    //    if(left < n && arr[left] > arr[largest]) largest = left;
+    //    if(right < n && arr[right] > arr[largest]) largest = right;
+    //    if(i != largest){
+    //        swap(arr[i],arr[largest]);
+    //        heapify(arr,n,largest);
+    //    }
+    //}
+    //void heapSort(int arr[], int n){
+    //    for(int i=n/2 -1;i>=0;i--){
+    //        heapify(arr,n,i);
+    //    }
+    //    for(int i=n-1;i>=0;i--){
+    //        swap(arr[0],arr[i]);
+    //        heapify(arr,i,0);
+    //    }
+    //}
+
+
+    //MERGE SORT
+//    void merge(int a[],int l, int r, int m){
+//        vector<int> x(a+l,a+m+1);
+//        vector<int> y(a+m+1,a+r+1);
+//        int i=0,j=0,k=l;
+//        while(i< x.size() && j < y.size()){
+//            if(x[i]<=y[j]){
+//                a[k++]=x[i++];
+//            }else{
+//                a[k++]=y[j++];
+//            }
+//        }
+//        while(i<x.size()) a[k++] = x[i++];
+//        while(j<y.size()) a[k++] = y[j++];
+//    }
+//    void mergeSort(int a[], int l, int r){
+//        if(l>=r) return;
+//        int m = l+(r-l)/2;
+//        mergeSort(a,l,m);
+//        mergeSort(a,m+1,r);
+//        merge(a,l,r,m);
+//    }
+
+
+    // QUICK SORT
+    int patrition(int a[], int l, int r){
+        int pivot = a[l];
+        int i = l-1, j = r +1;
+        while(1){
+            do{
+                i++;
+            }while(a[i] < pivot);
+            do{
+                j--;
+            }while(a[j] > pivot);
+            if(i<j){swap(a[i],a[j]);}
+            else return j;
+        }
+    }
+    void quickSort(int a[], int l, int r){
+        if(l>=r) return;
+        int p = patrition(a,l,r);
+        quickSort(a,l,p);
+        quickSort(a,p+1,r);
+    }
+    int main(){
+        int arr[10];
+        int n=5;
+        for(int i=0;i<n;i++){
+            cin >> arr[i];
+        }
+        quickSort(arr,0,n-1);
+        for(int i=0;i<n;i++){
+            cout << arr[i] << " ";
+        }
+    }
